@@ -14,6 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run a test command
-        run: exit 1
+      - name: Run Python tests
+        run: python3 -m unittest discover tests
 
