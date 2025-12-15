@@ -1,0 +1,19 @@
+name: CI Demo
+
+on: 
+  push:
+    branches: [ main ]  # Run on every push to main
+  pull_request:
+    branches: [ main ]  # Run on PRs to main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run a test command
+        run: echo "Hello DevOps CI!"
+
