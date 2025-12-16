@@ -1,19 +1,27 @@
-name: CI Demo
+name: CI Advanced Check
 
-on: 
-  push:
-    branches: [ main ]  # Run on every push to main
-  pull_request:
-    branches: [ main ]  # Run on PRs to main
+on: [push]
+
+env:
+  APP_ENV: production
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Run Python tests
-        run: python3 -m unittest discover tests
+      - name: Print environment
+        run: |
+          echo "Environment is $APP_ENV"
+
+      - name: Conditional step
+        if: env.APP_ENV == 'production'
+        run: echo "Running production-only checks"
+
+      - name: Simulate test
+        run: |
+          echo "Running tests..."
+          exit 0
 
